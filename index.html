@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Sticker Collection</title>
+  <style>
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: #1a2130;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f0f4f8;
+      --text-sub: #8292a6;
+      --header-bg: rgba(11, 14, 20, 0.85);
+      --accent-color: #00f2fe;
+      --owned-color: #00e676;
+      --not-owned-opacity: 0.25;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding-bottom: 40px;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 600px; margin: 0 auto; padding: 16px; }
+    
+    /* Header */
+    .ios-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--header-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      padding: 12px 16px; margin: -16px -16px 16px -16px;
+      border-bottom: 0.5px solid var(--card-border);
+      display: flex; align-items: center; justify-content: space-between; height: 52px;
+    }
+    .ios-header h1 { font-size: 17px; font-weight: 600; text-align: center; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-btn { background: none; border: none; color: var(--accent-color); font-size: 15px; font-weight: 500; cursor: pointer; min-width: 80px; text-align: left; }
+    .nav-btn:active { opacity: 0.5; }
+    .header-space { min-width: 80px; }
+
+    /* Layout Grids */
+    .page-enter { animation: slideIn 0.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+    @keyframes slideIn { from { transform: translateX(12px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    /* 3列グリッド */
+    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 10px; padding: 8px 0; }
+    
+    .item-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+    .item-icon {
+      width: 100%; aspect-ratio: 1 / 1; background: var(--card-bg); border-radius: 18px;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 14px; font-weight: bold;
+      border: 1px solid var(--card-border); overflow: hidden; transition: transform 0.15s; padding: 8px; text-align: center;
+    }
+    .item-card:active .item-icon { transform: scale(0.92); }
+    .item-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .item-title { margin-top: 6px; font-size: 11px; font-weight: 500; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+    .item-count { font-size: 10px; color: var(--text-sub); margin-top: 1px; }
+
+    /* Sticker Grid */
+    .sticker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .sticker-card {
+      background: linear-gradient(135deg, #1e2638 0%, #121722 100%);
+      border-radius: 14px; overflow: hidden; position: relative;
+      cursor: pointer; border: 1px solid var(--card-border); aspect-ratio: 1 / 1; transition: transform 0.15s, filter 0.2s, opacity 0.2s;
+    }
+    .sticker-card:active { transform: scale(0.95); }
+    
+    .sticker-card.not-owned {
+      opacity: var(--not-owned-opacity);
+      filter: grayscale(1);
+    }
+    
+    .img-box { width: 100%; height: 100%; position: relative; }
+    .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .text-card-content {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 6px; text-align: center;
+    }
+    .card-id { font-size: 12px; font-weight: 700; color: var(--text-main); letter-spacing: 0.5px; line-height: 1.2; }
+    .card-name { font-size: 10px; color: var(--text-sub); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+    .card-rarity { font-size: 11px; font-weight: 800; color: var(--accent-color); margin-top: 3px; letter-spacing: 0.5px; }
+
+    .ios-badge {
+      position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; z-index: 2;
+    }
+    .is-owned .ios-badge { background: var(--owned-color); color: #000; box-shadow: 0 0 8px rgba(0,230,118,0.4); }
+    .not-owned .ios-badge { background: rgba(255, 255, 255, 0.15); color: transparent; }
+
+    .empty-msg { text-align: center; color: var(--text-sub); padding: 60px 0; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="ios-header">
+      <button id="back-btn" class="nav-btn" onclick="goBack()" style="display:none;">‹ 戻る</button>
+      <div id="header-left-space" class="header-space"></div>
+      <h1 id="header-title">作品一覧</h1>
+      <div id="header-right-space" class="header-space"></div>
+    </div>
+    <div id="app-content"></div>
+  </div>
+
+  <script>
+    let seriesList = [];
+    let currentStickers = [];
+    let currentLevel = 'series';
+    let selectedSeries = null; // 例: { id: "onepiece", name: "ONE PIECE", file: "onepiece.json" }
+    let selectedGroup = null;
+
+    const appContent = document.getElementById('app-content');
+    const headerTitle = document.getElementById('header-title');
+    const backBtn = document.getElementById('back-btn');
+    const headerLeftSpace = document.getElementById('header-left-space');
+
+    async function init() {
+      try {
+        const res = await fetch('series.json');
+        seriesList = await res.json();
+        renderSeriesList();
+      } catch (err) {
+        appContent.innerHTML = '<div class="empty-msg">series.json の読み込みに失敗しました</div>';
+      }
+    }
+
+    function goBack() {
+      if (currentLevel === 'stickers') {
+        renderGroupList(selectedSeries.name);
+      } else if (currentLevel === 'group') {
+        renderSeriesList();
+      }
+    }
+
+    // 1. 作品一覧（series.json を元に描画）
+    function renderSeriesList() {
+      currentLevel = 'series';
+      selectedSeries = null;
+      headerTitle.textContent = '作品一覧';
+      backBtn.style.display = 'none';
+      headerLeftSpace.style.display = 'block';
+
+      if (!seriesList.length) {
+        return appContent.innerHTML = '<div class="empty-msg">作品データがありません</div>';
+      }
+
+      let html = '<div class="grid-3col page-enter">';
+      seriesList.forEach(series => {
+        html += `
+          <div class="item-card" onclick="loadAndShowSeries('${escapeHtml(series.id)}', '${escapeHtml(series.file)}', '${escapeHtml(series.name)}')">
+            <div class="item-icon"><span style="font-size:24px;"></span></div>
+            <div class="item-title">${escapeHtml(series.name)}</div>
+          </div>`;
+      });
+      appContent.innerHTML = html + '</div>';
+    }
+
+    // 作品のJSONを動的読み込み ＋ localStorageからの復元
+    async function loadAndShowSeries(seriesId, fileName, seriesName) {
+      try {
+        selectedSeries = { id: seriesId, name: seriesName, file: fileName };
+        const res = await fetch(fileName);
+        currentStickers = await res.json();
+
+        // localStorage から所持状況を復元
+        const savedOwnedIds = getSavedOwnedStatus(seriesId);
+        if (savedOwnedIds) {
+          currentStickers.forEach(sticker => {
+            if (sticker.id) {
+              sticker.owned = savedOwnedIds.includes(sticker.id);
+            }
+          });
+        }
+
+        renderGroupList(seriesName);
+      } catch (err) {
+        alert(`${fileName} の読み込みに失敗しました`);
+      }
+    }
+
+    // 2. グループ（LOG等）一覧
+    function renderGroupList(seriesName) {
+      currentLevel = 'group';
+      headerTitle.textContent = seriesName;
+      backBtn.style.display = 'block';
+      backBtn.textContent = '‹ 作品一覧';
+      headerLeftSpace.style.display = 'none';
+
+      const groupList = Array.from(new Set(currentStickers.map(s => s.group || s.dan || 'その他')));
+
+      let html = '<div class="grid-3col page-enter">';
+      groupList.forEach(groupName => {
+        const items = currentStickers.filter(s => (s.group || s.dan || 'その他') === groupName);
+        const owned = items.filter(s => s.owned).length;
+        const firstImg = items.find(s => s.imgUrl)?.imgUrl;
+        const iconHtml = firstImg 
+          ? `<img src="${escapeHtml(firstImg)}" loading="lazy" decoding="async">` 
+          : `<span style="color:var(--accent-color); font-weight:800;">${escapeHtml(groupName)}</span>`;
+
+        html += `
+          <div class="item-card" onclick="renderStickerList('${escapeHtml(groupName)}')">
+            <div class="item-icon">${iconHtml}</div>
+            <div class="item-title">${escapeHtml(groupName)}</div>
+            <div class="item-count">${owned}/${items.length}</div>
+          </div>`;
+      });
+      appContent.innerHTML = html + '</div>';
+    }
+
+    // 3. 各グループ内のシール一覧
+    function renderStickerList(groupName) {
+      currentLevel = 'stickers';
+      selectedGroup = groupName;
+      headerTitle.textContent = groupName;
+      backBtn.style.display = 'block';
+      backBtn.textContent = '‹ グループ';
+      headerLeftSpace.style.display = 'none';
+
+      const filtered = currentStickers.filter(s => (s.group || s.dan || 'その他') === groupName);
+
+      if (!filtered.length) return appContent.innerHTML = '<div class="empty-msg">シールがありません</div>';
+
+      let html = '<div class="sticker-grid page-enter">';
+      filtered.forEach(sticker => {
+        const realIdx = currentStickers.indexOf(sticker);
+        const isOwned = sticker.owned;
+
+        let contentHtml = '';
+        if (sticker.imgUrl) {
+          contentHtml = `
+            <div class="img-box">
+              <img src="${escapeHtml(sticker.imgUrl)}" alt="シール" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/200/1a2130/8292a6?text=No+Image'">
+            </div>`;
+        } else {
+          const rarityText = sticker.rarity ? `[${escapeHtml(sticker.rarity)}]` : '';
+          contentHtml = `
+            <div class="text-card-content">
+              <div class="card-id">${escapeHtml(sticker.id || '')}</div>
+              <div class="card-name">${escapeHtml(sticker.name || '')}</div>
+              <div class="card-rarity">${rarityText}</div>
+            </div>`;
+        }
+
+        html += `
+          <div class="sticker-card ${isOwned ? 'is-owned' : 'not-owned'}" onclick="toggleOwned(${realIdx}, this)">
+            <span class="ios-badge">${isOwned ? '✓' : ''}</span>
+            ${contentHtml}
+          </div>`;
+      });
+      appContent.innerHTML = html + '</div>';
+    }
+
+    // タップ時の状態切替 ＋ localStorageへの即時保存
+    function toggleOwned(idx, cardEl) {
+      currentStickers[idx].owned = !currentStickers[idx].owned;
+      const isOwned = currentStickers[idx].owned;
+      const badgeEl = cardEl.querySelector('.ios-badge');
+
+      if (isOwned) {
+        cardEl.classList.replace('not-owned', 'is-owned');
+        badgeEl.textContent = '✓';
+      } else {
+        cardEl.classList.replace('is-owned', 'not-owned');
+        badgeEl.textContent = '';
+      }
+
+      // 変更を localStorage に保存
+      if (selectedSeries && selectedSeries.id) {
+        saveOwnedStatus(selectedSeries.id);
+      }
+    }
+
+    // --- localStorage 関連関数 ---
+
+    // 所持しているシールの ID 一覧を保存
+    function saveOwnedStatus(seriesId) {
+      const ownedIds = currentStickers
+        .filter(s => s.owned && s.id)
+        .map(s => s.id);
+      
+      const storageKey = `sticker_owned_${seriesId}`;
+      localStorage.setItem(storageKey, JSON.stringify(ownedIds));
+    }
+
+    // 所持しているシールの ID 一覧を取得
+    function getSavedOwnedStatus(seriesId) {
+      const storageKey = `sticker_owned_${seriesId}`;
+      const data = localStorage.getItem(storageKey);
+      if (!data) return null;
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function escapeHtml(str) {
+      return (str || "").replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
+    }
+
+    init();
+  </script>
+</body>
+</html>

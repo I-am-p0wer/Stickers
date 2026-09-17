@@ -1,0 +1,22 @@
+[
+  {
+    "id": "onepiece",
+    "name": "ONE PIECE",
+    "file": "onepiece.json"
+  },
+  {
+    "id": "eva",
+    "name": "エヴァ",
+    "file": "eva.json"
+  },
+{
+    "id": "chenso",
+    "name": "チェンソーマン",
+    "file": "chenso.json"
+  },
+{
+    "id": "mh",
+    "name": "モンハン",
+    "file": "mh.json"
+  }
+]
