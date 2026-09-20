@@ -152,7 +152,7 @@
       seriesList.forEach(series => {
         html += `
           <div class="item-card" onclick="loadAndShowSeries('${escapeHtml(series.id)}', '${escapeHtml(series.file)}', '${escapeHtml(series.name)}')">
-            <div class="item-icon"><span style="font-size:24px;">🎨</span></div>
+            <div class="item-icon"><span style="font-size:24px;"></span></div>
             <div class="item-title">${escapeHtml(series.name)}</div>
           </div>`;
       });
