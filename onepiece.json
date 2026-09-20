@@ -463,5 +463,5 @@
   {"id": "SW14-33", "name": "サンファン・ウルフ", "group": "LOG.14", "rarity": "N"},
   {"id": "SW14-34", "name": "バスコ・ショット", "group": "LOG.14", "rarity": "N"},
   {"id": "SW14-35", "name": "モンキー・D・ルフィ、シャンクス、バギー、マーシャル・D・ティーチ", "group": "LOG.14", "rarity": "SEC"},
-  {"id": "SW14-36", "name": "四皇 モンキー・D・ルフィ、シャンクス、バギー、マーシャル・D・ティーチ", "group": "LOG.14", "rarity": "SEC"}
-]
+  {"id": "SW14-36", "name": "四皇 モンキー・D・ルフィ、シャンクス、バギー、マーシャル・D・ティーチ", "group": "LOG.14", "rarity": "SEC"},
+  {"id": "SW15-00", "name": "TEST", "group": "LOG.15", "rarity": "N"}
