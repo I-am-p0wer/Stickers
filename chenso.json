@@ -27,8 +27,6 @@
   { "id": "CSM1-26", "name": "早川アキ", "group": "公安対魔特異4課編", "rarity": "DR" },
   { "id": "CSM1-27", "name": "パワー", "group": "公安対魔特異4課編", "rarity": "DR" },
   { "id": "CSM1-28", "name": "マキマ", "group": "公安対魔特異4課編", "rarity": "DR" },
-
-
   { "id": "CSM2-1", "name": "チェンソーマン", "group": "レゼ編", "rarity": "SDR" },
   { "id": "CSM2-2", "name": "ボム", "group": "レゼ編", "rarity": "SDR" },
   { "id": "CSM2-3", "name": "ポチタ", "group": "レゼ編", "rarity": "N" },
@@ -57,8 +55,6 @@
   { "id": "CSM2-26", "name": "早川アキ", "group": "レゼ編", "rarity": "DR" },
   { "id": "CSM2-27", "name": "マキマ", "group": "レゼ編", "rarity": "DR" },
   { "id": "CSM2-28", "name": "デンジ", "group": "レゼ編", "rarity": "SEC" },
-  
-  
   { "id": "CSM3-1", "name": "チェンソーマン", "group": "BEST SELECTION", "rarity": "SDR" },
   { "id": "CSM3-2", "name": "ボム", "group": "BEST SELECTION", "rarity": "SDR" },
   { "id": "CSM3-3", "name": "レゼ", "group": "BEST SELECTION", "rarity": "SDR" },
@@ -92,6 +88,4 @@
   { "id": "CSM3-31", "name": "早川アキ", "group": "BEST SELECTION", "rarity": "5th" },
   { "id": "CSM3-32", "name": "レゼ", "group": "BEST SELECTION", "rarity": "5th" },
   { "id": "CSM3-33", "name": "デンジ&レゼ", "group": "BEST SELECTION", "rarity": "SEC" }
-
-  
 ]
