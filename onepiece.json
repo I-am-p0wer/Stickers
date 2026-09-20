@@ -464,6 +464,214 @@
   {"id": "SW14-34", "name": "バスコ・ショット", "group": "LOG.14", "rarity": "N"},
   {"id": "SW14-35", "name": "モンキー・D・ルフィ、シャンクス、バギー、マーシャル・D・ティーチ", "group": "LOG.14", "rarity": "SEC"},
   {"id": "SW14-36", "name": "四皇 モンキー・D・ルフィ、シャンクス、バギー、マーシャル・D・ティーチ", "group": "LOG.14", "rarity": "SEC"},
-  {"id": "SW15-22", "name": "TEST", "group": "LOG.15", "rarity": "N"},
-  {"id": "SW15-123", "name": "TEST", "group": "LOG.15", "rarity": "N"}
+  {
+    "id": "SW15-01",
+    "name": "モンキー・D・ルフィ",
+    "group": "LOG.15",
+    "rarity": "5th"
+  },
+  {
+    "id": "SW15-02",
+    "name": "カイドウ＆アルベル",
+    "group": "LOG.15",
+    "rarity": "5th"
+  },
+  {
+    "id": "SW15-03",
+    "name": "モンキー・D・ルフィ",
+    "group": "LOG.15",
+    "rarity": "5th"
+  },
+  {
+    "id": "SW15-04",
+    "name": "ボア・ハンコック",
+    "group": "LOG.15",
+    "rarity": "5th"
+  },
+  {
+    "id": "SW15-05",
+    "name": "シャンクス",
+    "group": "LOG.15",
+    "rarity": "5th"
+  },
+  {
+    "id": "SW15-06",
+    "name": "モンキー・D・ルフィ",
+    "group": "LOG.15",
+    "rarity": "SGR"
+  },
+  {
+    "id": "SW15-07",
+    "name": "モンキー・D・ルフィ",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-08",
+    "name": "ロロノア・ゾロ",
+    "group": "LOG.15",
+    "rarity": "R"
+  },
+  {
+    "id": "SW15-09",
+    "name": "ナミ",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-10",
+    "name": "ウソップ",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-11",
+    "name": "サンジ",
+    "group": "LOG.15",
+    "rarity": "R"
+  },
+  {
+    "id": "SW15-12",
+    "name": "ニコ・ロビン＆サウロ",
+    "group": "LOG.15",
+    "rarity": "R"
+  },
+  {
+    "id": "SW15-13",
+    "name": "ドリー",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-14",
+    "name": "ブロギー",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-15",
+    "name": "ロキ",
+    "group": "LOG.15",
+    "rarity": "SGR"
+  },
+  {
+    "id": "SW15-16",
+    "name": "ハイルディン",
+    "group": "LOG.15",
+    "rarity": "R"
+  },
+  {
+    "id": "SW15-17",
+    "name": "スコッパー・ギャバン",
+    "group": "LOG.15",
+    "rarity": "GR"
+  },
+  {
+    "id": "SW15-18",
+    "name": "コロン",
+    "group": "LOG.15",
+    "rarity": "N"
+  },
+  {
+    "id": "SW15-19",
+    "name": "シャムロック聖",
+    "group": "LOG.15",
+    "rarity": "SGR"
+  },
+  {
+    "id": "SW15-20",
+    "name": "軍子宮",
+    "group": "LOG.15",
+    "rarity": "SGR"
+  },
+  {
+    "id": "SW15-21",
+    "name": "シャンクス＆ベン・ベックマン",
+    "group": "LOG.15",
+    "rarity": "GR"
+  },
+  {
+    "id": "SW15-22",
+    "name": "バギー＆ミホーク＆クロコダイル",
+    "group": "LOG.15",
+    "rarity": "GR"
+  },
+  {
+    "id": "SW15-23",
+    "name": "マーシャル・D・ティーチ＆アバロ・ピサロ",
+    "group": "LOG.15",
+    "rarity": "GR"
+  },
+  {
+    "id": "SW15-24",
+    "name": "ジュラキュール・ミホーク",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-25",
+    "name": "クロコダイル",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-26",
+    "name": "ドンキホーテ・ドフラミンゴ",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-27",
+    "name": "バーソロミュー・くま",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-28",
+    "name": "ゲッコー・モリア",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-29",
+    "name": "ボア・ハンコック",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-30",
+    "name": "ジンベエ",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-31",
+    "name": "マーシャル・D・ティーチ",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-32",
+    "name": "バギー",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-33",
+    "name": "トラファルガー・ロー",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-34",
+    "name": "エドワード・ウィーブル",
+    "group": "LOG.15",
+    "rarity": "SP"
+  },
+  {
+    "id": "SW15-35",
+    "name": "イム",
+    "group": "LOG.15",
+    "rarity": "SEC"
+  }
   ]
