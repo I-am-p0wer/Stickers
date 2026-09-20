@@ -91,7 +91,7 @@
     .is-owned .ios-badge { background: var(--owned-color); color: #000; box-shadow: 0 0 8px rgba(0,230,118,0.4); }
     .not-owned .ios-badge { background: rgba(255, 255, 255, 0.15); color: transparent; }
 
-    .empty-msg { text-align: center; color: var(--text-sub); padding: 60px 0; font-size: 14px; }
+    .empty-msg { text-align: center; color: var(--text-sub); padding: 60px 16px; font-size: 14px; line-height: 1.6; word-break: break-all; }
   </style>
 </head>
 <body>
@@ -110,7 +110,7 @@
     let seriesList = [];
     let currentStickers = [];
     let currentLevel = 'series';
-    let selectedSeries = null; // 例: { id: "onepiece", name: "ONE PIECE", file: "onepiece.json" }
+    let selectedSeries = null;
     let selectedGroup = null;
 
     const appContent = document.getElementById('app-content');
@@ -121,10 +121,11 @@
     async function init() {
       try {
         const res = await fetch('series.json');
+        if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
         seriesList = await res.json();
         renderSeriesList();
       } catch (err) {
-        appContent.innerHTML = '<div class="empty-msg">series.json の読み込みに失敗しました</div>';
+        appContent.innerHTML = `<div class="empty-msg">series.json の読み込みに失敗しました<br><span style="font-size:11px; color:#ff5252;">${escapeHtml(err.message)}</span></div>`;
       }
     }
 
@@ -136,7 +137,6 @@
       }
     }
 
-    // 1. 作品一覧（series.json を元に描画）
     function renderSeriesList() {
       currentLevel = 'series';
       selectedSeries = null;
@@ -152,21 +152,20 @@
       seriesList.forEach(series => {
         html += `
           <div class="item-card" onclick="loadAndShowSeries('${escapeHtml(series.id)}', '${escapeHtml(series.file)}', '${escapeHtml(series.name)}')">
-            <div class="item-icon"><span style="font-size:24px;"></span></div>
+            <div class="item-icon"><span style="font-size:24px;">🎨</span></div>
             <div class="item-title">${escapeHtml(series.name)}</div>
           </div>`;
       });
       appContent.innerHTML = html + '</div>';
     }
 
-    // 作品のJSONを動的読み込み ＋ localStorageからの復元
     async function loadAndShowSeries(seriesId, fileName, seriesName) {
       try {
         selectedSeries = { id: seriesId, name: seriesName, file: fileName };
         const res = await fetch(fileName);
+        if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
         currentStickers = await res.json();
 
-        // localStorage から所持状況を復元
         const savedOwnedIds = getSavedOwnedStatus(seriesId);
         if (savedOwnedIds) {
           currentStickers.forEach(sticker => {
@@ -178,11 +177,10 @@
 
         renderGroupList(seriesName);
       } catch (err) {
-        alert(`${fileName} の読み込みに失敗しました`);
+        alert(`${fileName} の読み込みに失敗しました\n詳細: ${err.message}`);
       }
     }
 
-    // 2. グループ（LOG等）一覧
     function renderGroupList(seriesName) {
       currentLevel = 'group';
       headerTitle.textContent = seriesName;
@@ -199,7 +197,7 @@
         const firstImg = items.find(s => s.imgUrl)?.imgUrl;
         const iconHtml = firstImg 
           ? `<img src="${escapeHtml(firstImg)}" loading="lazy" decoding="async">` 
-          : `<span style="color:var(--accent-color); font-weight:800;">${escapeHtml(groupName)}</span>`;
+          : `<span style="color:var(--accent-color); font-weight:800; font-size:11px;">${escapeHtml(groupName)}</span>`;
 
         html += `
           <div class="item-card" onclick="renderStickerList('${escapeHtml(groupName)}')">
@@ -211,7 +209,6 @@
       appContent.innerHTML = html + '</div>';
     }
 
-    // 3. 各グループ内のシール一覧
     function renderStickerList(groupName) {
       currentLevel = 'stickers';
       selectedGroup = groupName;
@@ -233,7 +230,7 @@
         if (sticker.imgUrl) {
           contentHtml = `
             <div class="img-box">
-              <img src="${escapeHtml(sticker.imgUrl)}" alt="シール" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/200/1a2130/8292a6?text=No+Image'">
+              <img src="${escapeHtml(sticker.imgUrl)}" alt="シール" loading="lazy" decoding="async">
             </div>`;
         } else {
           const rarityText = sticker.rarity ? `[${escapeHtml(sticker.rarity)}]` : '';
@@ -254,7 +251,6 @@
       appContent.innerHTML = html + '</div>';
     }
 
-    // タップ時の状態切替 ＋ localStorageへの即時保存
     function toggleOwned(idx, cardEl) {
       currentStickers[idx].owned = !currentStickers[idx].owned;
       const isOwned = currentStickers[idx].owned;
@@ -268,15 +264,11 @@
         badgeEl.textContent = '';
       }
 
-      // 変更を localStorage に保存
       if (selectedSeries && selectedSeries.id) {
         saveOwnedStatus(selectedSeries.id);
       }
     }
 
-    // --- localStorage 関連関数 ---
-
-    // 所持しているシールの ID 一覧を保存
     function saveOwnedStatus(seriesId) {
       const ownedIds = currentStickers
         .filter(s => s.owned && s.id)
@@ -286,7 +278,6 @@
       localStorage.setItem(storageKey, JSON.stringify(ownedIds));
     }
 
-    // 所持しているシールの ID 一覧を取得
     function getSavedOwnedStatus(seriesId) {
       const storageKey = `sticker_owned_${seriesId}`;
       const data = localStorage.getItem(storageKey);
