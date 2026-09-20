@@ -57,4 +57,41 @@
   { "id": "CSM2-26", "name": "早川アキ", "group": "レゼ編", "rarity": "DR" },
   { "id": "CSM2-27", "name": "マキマ", "group": "レゼ編", "rarity": "DR" },
   { "id": "CSM2-28", "name": "デンジ", "group": "レゼ編", "rarity": "SEC" }
+  
+  
+  { "id": "CSM3-1", "name": "チェンソーマン", "group": "BEST SELECTION", "rarity": "SDR" },
+  { "id": "CSM3-2", "name": "ボム", "group": "BEST SELECTION", "rarity": "SDR" },
+  { "id": "CSM3-3", "name": "レゼ", "group": "BEST SELECTION", "rarity": "SDR" },
+  { "id": "CSM3-4", "name": "デンジ", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-5", "name": "ポチタ", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-6", "name": "マキマ", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-7", "name": "姫野", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-8", "name": "コベニ", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-9", "name": "岸辺", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-10", "name": "蜘蛛の悪魔", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-11", "name": "黒瀬&天童", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-12", "name": "デンジ", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-13", "name": "ポチタ", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-14", "name": "マキマ", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-15", "name": "早川アキ", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-16", "name": "パワー", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-17", "name": "レゼ", "group": "BEST SELECTION", "rarity": "R" },
+  { "id": "CSM3-18", "name": "チェンソーマン&ビーム", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-19", "name": "天使の悪魔", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-20", "name": "野茂&副隊長", "group": "BEST SELECTION", "rarity": "N" },
+  { "id": "CSM3-21", "name": "姫野&早川アキ", "group": "BEST SELECTION", "rarity": "SR" },
+  { "id": "CSM3-22", "name": "デンジ&パワー", "group": "BEST SELECTION", "rarity": "SR" },
+  { "id": "CSM3-23", "name": "デンジ&早川アキ", "group": "BEST SELECTION", "rarity": "SR" },
+  { "id": "CSM3-24", "name": "デンジ&マキマ", "group": "BEST SELECTION", "rarity": "SR" },
+  { "id": "CSM3-25", "name": "チェンソーマン&サムライソード", "group": "BEST SELECTION", "rarity": "DR" },
+  { "id": "CSM3-26", "name": "マキマ", "group": "BEST SELECTION", "rarity": "DR" },
+  { "id": "CSM3-27", "name": "レゼ", "group": "BEST SELECTION", "rarity": "DR" },
+  { "id": "CSM3-28", "name": "デンジ", "group": "BEST SELECTION", "rarity": "5th" },
+  { "id": "CSM3-29", "name": "ポチタ", "group": "BEST SELECTION", "rarity": "5th" },
+  { "id": "CSM3-30", "name": "マキマ", "group": "BEST SELECTION", "rarity": "5th" },
+  { "id": "CSM3-31", "name": "早川アキ", "group": "BEST SELECTION", "rarity": "5th" },
+  { "id": "CSM3-32", "name": "レゼ", "group": "BEST SELECTION", "rarity": "5th" },
+  { "id": "CSM3-33", "name": "デンジ&レゼ", "group": "BEST SELECTION", "rarity": "SEC" }
+
+  
 ]
